@@ -42,7 +42,7 @@ def start(message):
 
 while True:
     now = datetime.now().time()
-    if now.hour == 5 and now.minute == 41:
+    if now.hour == 12 and now.minute == 00:
         paimon_got_some_news()
         time.sleep(60)
     else:
