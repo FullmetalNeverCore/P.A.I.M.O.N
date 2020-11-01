@@ -17,8 +17,8 @@ logging.basicConfig(level=logging.INFO)
 print("Ehe te nandoyo!")
 
 def paimon_got_some_news():
-    u_id = "497185921"
-    token = "1425708349:AAHHzf5dwC1M7L6tlV1ecs_aYriHb1yAuP4"
+    u_id = #urtoken
+    token = #urkey
     r = requests.get(f"https://www.bing.com/news/search?q=genshin+impact&qpvt=genshin+impact&FORM=EWRE")
     html = BS(r.content, 'html.parser')
 
