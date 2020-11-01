@@ -8,8 +8,8 @@ import schedule
 import asyncio
 
 
-u_id = "497185921"
-token = "1425708349:AAHHzf5dwC1M7L6tlV1ecs_aYriHb1yAuP4"
+u_id = #urtoken
+token = #urkey
 bot = Bot(token= token, parse_mode=types.ParseMode.MARKDOWN)
 dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
