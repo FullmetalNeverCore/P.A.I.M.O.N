@@ -6,8 +6,8 @@ from datetime import datetime, time, timedelta
 import time
 import schedule
 
-u_id = "497185921"
-token = "1425708349:AAHHzf5dwC1M7L6tlV1ecs_aYriHb1yAuP4"
+u_id = #UR TOKEN
+token = #API_KEY
 bot = telebot.TeleBot(token)
 logging.basicConfig(level=logging.INFO)
 
