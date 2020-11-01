@@ -1,18 +1,24 @@
 import logging
-import telebot
+from aiogram import Bot, Dispatcher, executor, md, types
 from bs4 import BeautifulSoup as BS 
 import requests
 from datetime import datetime, time, timedelta
 import time
 import schedule
+import asyncio
 
-u_id = #UR TOKEN
-token = #API_KEY
-bot = telebot.TeleBot(token)
+
+u_id = "497185921"
+token = "1425708349:AAHHzf5dwC1M7L6tlV1ecs_aYriHb1yAuP4"
+bot = Bot(token= token, parse_mode=types.ParseMode.MARKDOWN)
+dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
 
+print("Ehe te nandoyo!")
 
 def paimon_got_some_news():
+    u_id = "497185921"
+    token = "1425708349:AAHHzf5dwC1M7L6tlV1ecs_aYriHb1yAuP4"
     r = requests.get(f"https://www.bing.com/news/search?q=genshin+impact&qpvt=genshin+impact&FORM=EWRE")
     html = BS(r.content, 'html.parser')
 
@@ -29,23 +35,18 @@ def paimon_got_some_news():
         else:
             t = open("file.txt", "w", encoding='utf-8')
             tr = t.write(str(text))
-            bot.send_message(u_id, text) 
+            print("1")
+            send_message = 'https://api.telegram.org/bot' + token + '/sendMessage?chat_id=' + u_id + '&parse_mode=Markdown&text=' + text
+            send_response = requests.get(send_message)
+            return send_response.json()
 
 
-
-@bot.message_handler(commands=['start'])
-def start(message):
-    u_id = message.chat.id
-    bot.send_message(u_id, "Heyy!Now Paimon will send u some news,once a day!")
-
-
+schedule.every(5).hours.do(paimon_got_some_news)
 
 while True:
-    now = datetime.now().time()
-    if now.hour == 12 and now.minute == 00:
-        paimon_got_some_news()
-        time.sleep(60)
-    else:
-        time.sleep(60)
-        
-bot.polling()
+    schedule.run_pending()
+    time.sleep(1)
+
+
+if __name__ == '__main__':
+        executor.start_polling(dp, skip_updates=True)
